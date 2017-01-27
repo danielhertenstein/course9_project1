@@ -1,0 +1,28 @@
+---
+title: "Mount Desert Island Leaflet Map"
+author: "Daniel Hertenstein"
+date: "January 26, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+library(leaflet)
+```
+
+This map shows three of my favorite places in the world. I hope you go there one day.
+
+```{r, echo=FALSE}
+important_points <- data.frame(lat = c(44.320042, 44.275305, 44.391183), lng = c(-68.253420, -68.313006, -68.205059))
+location_names <- c("<a href='http://acadiajordanpondhouse.com/'>Jordan Pond Teahouse</a>", 
+                    "<a href='https://www.bealslobster.com/'>Beal's Lobster Pier</a>", 
+                    "<a href='http://www.barharborinfo.com/'>Bar Harbor</a>")
+important_points %>% 
+  leaflet() %>% 
+  setView(lat = 44.333409, lng = -68.312048, zoom=11) %>%
+  addTiles() %>% 
+  addMarkers(popup=location_names)
+```
